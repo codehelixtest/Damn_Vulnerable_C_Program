@@ -64,10 +64,7 @@ int ProcessImage(char* filename){
 			return 0;
 		}
 		//heap buffer overflow
-if (sizeof(img.data) > size1) {
-    printf("Error!, not enough memory to copy data");
-    return 0;
-}
+		memcpy(buff1,img.data,sizeof(img.data));
 		free(buff1);
 		buff1=NULL;
 
@@ -108,7 +105,7 @@ if (sizeof(img.data) > size1) {
 		}
 
 		//heap buffer overflow
-		memcpy(buff2,img.data,sizeof(img.data));
+if (fread(&img, sizeof(img), 1, fp) != 1) { return 0; }
 
 		//divide by zero
 		if(img.height==0)
