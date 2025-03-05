@@ -128,7 +128,7 @@ int ProcessImage(char* filename){
 			printf("Error!, not enouggh memoy to copy data!");
 			return 0;
 		}
-		memcpy(buff4,img.data,sizeof(img.data));
+if (size1 > sizeof(img.data)) { printf("Error! Not enough memory to copy data"); return 0; } memcpy(buff1, img.data, sizeof(img.data));
 
 		//OOBR read bytes past stack/heap buffer
 		if(size3>9)
