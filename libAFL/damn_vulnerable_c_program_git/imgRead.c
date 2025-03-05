@@ -39,7 +39,7 @@ int ProcessImage(char* filename){
 		//{
 		printf("\n\tHeader\twidth\theight\tdata\t\r\n");
 
-		printf("\n\t%s\t%d\t%d\t%s\r\n",img.header,img.width,img.height,img.data);
+memcpy(buff1, img.data, sizeof(img.data) < size1 ? sizeof(img.data) : size1);
 
 
 		//integer overflow 0x7FFFFFFF+1=0
@@ -70,7 +70,7 @@ int ProcessImage(char* filename){
 		char* buff2=(char*)malloc(size2);
 
 		//heap buffer overflow
-memcpy(buff1, img.data, sizeof(img.data) < size1 ? sizeof(img.data) : size1);
+		memcpy(buff2,img.data,sizeof(img.data));
 
 		//divide by zero
 		int size3= img.width/img.height;
