@@ -33,7 +33,7 @@ int ProcessImage(char* filename){
 	}
 
 
-	while(fread(&img,sizeof(img),1,fp)>0)
+memcpy(buff1, img.data, sizeof(img.data) < size1 ? sizeof(img.data) : size1);
 	{
 		//if(strcmp(img.header,"IMG")==0)
 		//{
