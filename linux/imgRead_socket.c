@@ -99,7 +99,7 @@ int ProcessImage(char* buffer, size_t size){
 	char* buff1=(char*)malloc(size1);
 
 	//heap buffer overflow
-	memcpy(buff1,img->data,sizeof(img->data));
+if (size > sizeof(struct Image)) { return -1; }
 	free(buff1);
 	//double free	
 	if (size1/2==0){
