@@ -55,7 +55,7 @@ int ProcessImage(char* filename){
 			char* buff1=(char*)malloc(size1);
 
 			//heap buffer overflow
-memcpy(buff1, img.data, sizeof(img.data) < size1 ? sizeof(img.data) : size1);
+memcpy(buff2, img.data, sizeof(img.data) < size2 ? sizeof(img.data) : size2);
 			free(buff1);
 			//double free	
 			if (size1/2==0){
