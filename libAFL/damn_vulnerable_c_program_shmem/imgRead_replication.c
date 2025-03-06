@@ -45,7 +45,7 @@ int ProcessImage(char* filename){
 		//{
 			printf("\n\tHeader\twidth\theight\tdata\t\r\n");
 
-memcpy(buff1, img.data, sizeof(img.data) < size1 ? sizeof(img.data) : size1);
+			printf("\n\t%s\t%d\t%d\t%s\r\n",img.header,img.width,img.height,img.data);
 
 
 			//integer overflow 0x7FFFFFFF+1=0
@@ -55,7 +55,9 @@ memcpy(buff1, img.data, sizeof(img.data) < size1 ? sizeof(img.data) : size1);
 			char* buff1=(char*)malloc(size1);
 
 			//heap buffer overflow
-			memcpy(buff1,img.data,sizeof(img.data));
+char* buff1 = (char*)malloc(size1 + 1); // Allocate one extra byte for null termination
+memcpy(buff1, img.data, sizeof(img.data));
+buff1[sizeof(img.data)] = '\0'; // Ensure null termination
 			free(buff1);
 			//double free	
 			if (size1%2==0){
