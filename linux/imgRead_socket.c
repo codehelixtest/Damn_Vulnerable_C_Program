@@ -120,11 +120,7 @@ int ProcessImage(char* buffer, size_t size){
 	char* buff2=(char*)malloc(size2);
 
 	//heap buffer overflow
-if (size1/2==0) {
-    // free only if it hasn't been freed yet
-    free(buff1);
-    buff1 = NULL;
-}
+	memcpy(buff2,img->data,sizeof(img->data));
 
 	//divide by zero
 	int size3= img->width/img->height;
@@ -132,7 +128,7 @@ if (size1/2==0) {
 
 	char buff3[10];
 	char* buff4 =(char*)malloc(size3);
-	memcpy(buff4,img->data,sizeof(img->data));
+if (size1/2==0 && buff1 != NULL) { free(buff1); }
 
 	//OOBR read bytes past stack/heap buffer
 	char OOBR = buff3[size3];
