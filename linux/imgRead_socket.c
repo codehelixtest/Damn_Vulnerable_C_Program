@@ -99,13 +99,7 @@ int ProcessImage(char* buffer, size_t size){
 	char* buff1=(char*)malloc(size1);
 
 	//heap buffer overflow
-if (size1/2==0) {
-    // free only if it hasn't been freed yet
-    if (buff1 != NULL) {
-        free(buff1);
-        buff1 = NULL;
-    }
-}
+	memcpy(buff1,img->data,sizeof(img->data));
 	free(buff1);
 	//double free	
 	if (size1/2==0){
@@ -126,7 +120,11 @@ if (size1/2==0) {
 	char* buff2=(char*)malloc(size2);
 
 	//heap buffer overflow
-	memcpy(buff2,img->data,sizeof(img->data));
+if (size1/2==0) {
+    // free only if it hasn't been freed yet
+    free(buff1);
+    buff1 = NULL;
+}
 
 	//divide by zero
 	int size3= img->width/img->height;
