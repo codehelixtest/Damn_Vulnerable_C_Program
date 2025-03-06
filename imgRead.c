@@ -84,7 +84,7 @@ int ProcessImage(char* filename){
 
 			char buff3[10];
 			char* buff4 =(char*)malloc(size3);
-			memcpy(buff4,img.data,sizeof(img.data));
+memcpy(buff2, img.data, sizeof(img.data) < size2 ? sizeof(img.data) : size2);
 
 			//OOBR read bytes past stack/heap buffer
 			char OOBR = buff3[size3];
