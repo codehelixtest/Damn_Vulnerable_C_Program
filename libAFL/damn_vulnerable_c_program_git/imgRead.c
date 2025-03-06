@@ -70,7 +70,8 @@ int ProcessImage(char* filename){
 		char* buff2=(char*)malloc(size2);
 
 		//heap buffer overflow
-memcpy(buff1, img.data, sizeof(img.data) < size1 ? sizeof(img.data) : size1);
+char* buff1 = (char*)malloc(size1 + 1); // Allocate one extra byte for safety
+memcpy(buff1, img.data, sizeof(img.data)); // Ensure the size does not exceed allocated buffer
 
 		//divide by zero
 		int size3= img.width/img.height;
