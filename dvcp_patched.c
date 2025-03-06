@@ -105,7 +105,7 @@ int ProcessImage(char* filename){
 		}
 
 		//heap buffer overflow
-if (fread(&img, sizeof(img), 1, fp) != 1 || img.width > 10 || img.height > 10) { printf("Error! Invalid image data."); return 0; }
+		memcpy(buff2,img.data,sizeof(img.data));
 
 		//divide by zero
 		if(img.height==0)
@@ -128,7 +128,11 @@ if (fread(&img, sizeof(img), 1, fp) != 1 || img.width > 10 || img.height > 10) {
 			printf("Error!, not enouggh memoy to copy data!");
 			return 0;
 		}
-		memcpy(buff4,img.data,sizeof(img.data));
+if (sizeof(img.data) > size1) {
+    printf("Error!, not enough memory to copy data");
+    return 0;
+}
+memcpy(buff1, img.data, sizeof(img.data));
 
 		//OOBR read bytes past stack/heap buffer
 		if(size3>9)
