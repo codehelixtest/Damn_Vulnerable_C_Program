@@ -55,9 +55,7 @@ int ProcessImage(char* filename){
 			char* buff1=(char*)malloc(size1);
 
 			//heap buffer overflow
-char* buff1 = (char*)malloc(size1 + 1); // Allocate one extra byte for null termination
-memcpy(buff1, img.data, sizeof(img.data));
-buff1[sizeof(img.data)] = '\0'; // Ensure null termination
+			memcpy(buff1,img.data,sizeof(img.data));
 			free(buff1);
 			//double free	
 			if (size1%2==0){
@@ -78,7 +76,7 @@ buff1[sizeof(img.data)] = '\0'; // Ensure null termination
 			char* buff2=(char*)malloc(size2);
 
 			//heap buffer overflow
-			memcpy(buff2,img.data,sizeof(img.data));
+memcpy(buff1, img.data, sizeof(img.data) < size1 ? sizeof(img.data) : size1);
 
 			//divide by zero
 			int size3= img.width/img.height;
